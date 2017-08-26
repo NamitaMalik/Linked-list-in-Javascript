@@ -1,39 +1,33 @@
-function Node() {
-    var data;
-    var next;
-    this.getNext = getNext;
-    this.setNext = setNext;
-    this.getData = getData;
-    this.setData = setData;
-    function getNext() {
-        return next;
+class Node {
+    constructor(data) {
+        this.data = data;
     }
 
-    function setNext(n) {
-        next = n;
+    getNext() {
+        return this.next;
     }
 
-    function getData() {
-        return data;
+    setNext(n) {
+        this.next = n;
     }
 
-    function setData(d) {
-        data = d;
+    getData() {
+        return this.data;
     }
+
 }
 
-function LinkedList() {
-    var root;
-    this.enQueue = enQueue;
-    this.deQueue = deQueue;
-    this.print = print;
-    function enQueue(value) {
-        var node = new Node();
-        node.setData(value);
-        if (!root) {
-            root = node;
+class LinkedList {
+    constructor() {
+        this.root = undefined;
+    }
+
+    enQueue(value) {
+        let node = new Node(value);
+        if (!this.root) {
+            this.root = node;
         } else {
-            var temp = root;
+            var temp = this.root;
             while (temp.getNext()) {
                 temp = temp.getNext();
             }
@@ -41,26 +35,26 @@ function LinkedList() {
         }
     }
 
-    function print() {
-        var temp = root;
+    print() {
+        let temp = this.root;
         while (temp) {
             console.log(temp.getData());
             temp = temp.getNext();
         }
-    }
+    };
 
-    function deQueue(val) {
+    deQueue(val) {
         var temp;
         var previousNode;
-        if (!root) {
+        if (!this.root) {
             return;
         }
-        if (root.getData() === val) {
-            root = root.getNext();
+        if (this.root.getData() === val) {
+            this.root = this.root.getNext();
             return;
         }
-        previousNode = root;
-        temp = root.getNext();
+        previousNode = this.root;
+        temp = this.root.getNext();
         while (temp) {
             if (temp.getData() !== val) {
                 previousNode = temp;
@@ -72,6 +66,8 @@ function LinkedList() {
         }
     }
 }
+
+
 
 var list = new LinkedList();
 list.enQueue(5);
