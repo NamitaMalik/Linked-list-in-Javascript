@@ -67,8 +67,6 @@ class LinkedList {
     }
 }
 
-
-
 var list = new LinkedList();
 list.enQueue(5);
 list.enQueue(6);
@@ -76,5 +74,6 @@ list.enQueue(1);
 list.enQueue(8);
 list.enQueue(9);
 list.enQueue(6);
+list.print();
 list.deQueue(6);
 list.print();
