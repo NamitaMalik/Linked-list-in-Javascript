@@ -36,11 +36,13 @@ class LinkedList {
     }
 
     print() {
+        let result = [];
         let temp = this.root;
         while (temp) {
-            console.log(temp.getData());
+            result.push(temp.getData());
             temp = temp.getNext();
         }
+        console.log(result.join(' => '));
     };
 
     deQueue(val) {
@@ -67,13 +69,15 @@ class LinkedList {
     }
 }
 
-let list = new LinkedList();
-list.enQueue(5);
+let list = new LinkedList(); // Initializing linked list
+list.enQueue(5); //Adding 5 to linked list
 list.enQueue(6);
 list.enQueue(1);
 list.enQueue(8);
 list.enQueue(9);
 list.enQueue(6);
+console.log("Printing the linked list before removing 6");
 list.print();
-list.deQueue(6);
+list.deQueue(6); // Removing 6 from linked list
+console.log("Printing linked list after removing 6");
 list.print();

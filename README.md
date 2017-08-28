@@ -54,32 +54,13 @@ As you can see above, we have `getNext`, `setNext` and `getData` functions.
 
 Now, let's implement the `LinkedList` class. It should be have the following functionality:
 
-1. Linked List Creation
-2. Linked List Deletion
-3. Updating Linked List
+1. Adding a new node to Linked List
+2. Removing a node from Linked List
+3. Print the Linked List
 
 Below is the `LinkedList` class:
 
 ```Javascript
-class Node {
-    constructor(data) {
-        this.data = data;
-    }
-
-    getNext() {
-        return this.next;
-    }
-
-    setNext(n) {
-        this.next = n;
-    }
-
-    getData() {
-        return this.data;
-    }
-
-}
-
 class LinkedList {
     constructor() {
         this.root = undefined;
@@ -99,11 +80,13 @@ class LinkedList {
     }
 
     print() {
+        let result = [];
         let temp = this.root;
         while (temp) {
-            console.log(temp.getData());
+            result.push(temp.getData());
             temp = temp.getNext();
         }
+        console.log(result.join(' => '));
     };
 
     deQueue(val) {
@@ -151,8 +134,8 @@ enQueue(value) {
 ```
 
 `enQueue` function is to add a node to a `linked list`. As we know `root` node is the first node in the `linked list`.
-If `root` node does not have data we need to initialize root node, else if root node has data, we check if there is another node after the root node and as soon as
-we get a node which doesn't have any next/subsequent node, we add the intended node.
+If node does not have reference to any node we need to initialize root node first, else if root node has reference of a node, we check if there is another node after the root node. 
+As soon as we get a node which doesn't have any next/subsequent node, we add the intended node.
 
 2. `deQueue` function
 
@@ -182,50 +165,50 @@ deQueue(val) {
 ```
 
 `deQueue` function is responsible for deleting a node in the linked list. In order to delete a node, we remove the reference of the node to be deleted from its
-previous node and reference of next node in the linked list is assigned to the previous node.
+previous node and reference of next node in the linked list is assigned to the previous node. And when removed node is the root node,
+we simply refer next node of the root node as a root node.
  
- 3. `print` function
+> Dereference node will be automatically collected by Garbage Collector. 
+ 
+3. `print` function
  
 ```Javascript
 print() {
+    let result = [];
     let temp = this.root;
     while (temp) {
-        console.log(temp.getData());
+        result.push(temp.getData());
         temp = temp.getNext();
     }
+    console.log(result.join(' => '));
 };
 ```   
 
-We initialize a linked list by the `root node` and traverse through the linked list till we reach end of it.
+We initialize the temp variable by the root node and traverse through the linked list till we reach end of it.
 
 Let's see some action now:
 ```Javascript
-let list = new LinkedList();
-list.enQueue(5);
+let list = new LinkedList(); // Initializing linked list
+list.enQueue(5); //Adding 5 to linked list
 list.enQueue(6);
 list.enQueue(1);
 list.enQueue(8);
 list.enQueue(9);
 list.enQueue(6);
+console.log("Printing the linked list before removing 6");
 list.print();
-list.deQueue(6);
+list.deQueue(6); // Removing 6 from linked list
+console.log("Printing linked list after removing 6");
 list.print();
 ```
 
 Output of the above code is:
 
 ```Javascript
-5
-6
-1
-8
-9
-6
-5
-1
-8
-9
-6
+Printing the linked list before removing 6
+5 => 6 => 1 => 8 => 9 => 6
+Printing linked list after removing 6
+5 => 1 => 8 => 9 => 6
 ```
 
 In the above output, one can notice the first call to the `print` function prints the entire linked list and then on making the second call
