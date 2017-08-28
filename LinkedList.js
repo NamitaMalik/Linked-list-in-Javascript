@@ -27,7 +27,7 @@ class LinkedList {
         if (!this.root) {
             this.root = node;
         } else {
-            var temp = this.root;
+            let temp = this.root;
             while (temp.getNext()) {
                 temp = temp.getNext();
             }
@@ -44,8 +44,8 @@ class LinkedList {
     };
 
     deQueue(val) {
-        var temp;
-        var previousNode;
+        let temp;
+        let previousNode;
         if (!this.root) {
             return;
         }
@@ -67,7 +67,7 @@ class LinkedList {
     }
 }
 
-var list = new LinkedList();
+let list = new LinkedList();
 list.enQueue(5);
 list.enQueue(6);
 list.enQueue(1);
